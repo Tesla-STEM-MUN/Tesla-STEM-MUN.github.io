@@ -1,0 +1,9 @@
+{
+  "cancel_all_upcoming": false,
+  "cancel_until": "",
+  "cancel_dates": [],
+  "resources": 
+  [
+    { "label": "Work in Progress", "url": "https://example.com" }
+  ]
+}

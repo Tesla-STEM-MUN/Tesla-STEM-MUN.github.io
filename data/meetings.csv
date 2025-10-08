@@ -1,0 +1,37 @@
+date,	time,	duration,	type,	    room,	cancelled
+9/17/2025,	,	45m,	Intro,	        111,	false
+9/24/2025,	,	45m,	Topic Intro,	111,	false
+10/1/2025,	,	30m,	Research,	    111, 	false
+10/8/2025,	,	45m,	Debate,	        111,	false
+10/15/2025,	,	45m,	Resolution,	    111, 	false
+10/22/2025,	,	45m,	Topic Intro,	111, 	false
+10/29/2025,	,	45m,	Research,	    111, 	false
+11/5/2025,	,	45m,	Debate,	        111, 	false
+11/12/2025,	,	45m,	Resolution,	    111, 	false
+11/19/2025,	,	45m,	Topic Intro,	111, 	false
+12/3/2025,	,	45m,	Research,	    111, 	false
+12/10/2025,	,	45m,	Debate,	        111, 	false
+12/17/2025,	,	45m,	Resolution,	    111, 	false
+1/7/2026,	,	45m,	Topic Intro,	111, 	false
+1/14/2026,	,	45m,	Research,	    111, 	false
+1/21/2026,	,	45m,	Debate,	        111, 	false
+1/28/2026,	,	45m,	Resolution,	    111, 	false
+2/4/2026,	,	45m,	Topic Intro,	111, 	false
+2/11/2026,	,	45m,	Research,	    111, 	false
+2/18/2026,	,	45m,	Debate,	        111, 	false
+2/25/2026,	,	45m,	Resolution,	    111, 	false
+3/4/2026,	,	45m,	Topic Intro,	111, 	false
+3/11/2026,	,	45m,	Research,	    111,	false
+3/18/2026,	,	45m,	Debate,	        111,	false
+3/25/2026,	,	45m,	Resolution,	    111, 	false
+4/1/2026,	,	45m,	Topic Intro,	111, 	false
+4/8/2026,	,	45m,	Research,	    111, 	false
+4/22/2026,	,	45m,	Debate,	        111, 	false
+4/29/2026,	,	45m,	Resolution,	    111, 	false
+5/6/2026,	,	45m,	Topic Intro,	111, 	false
+5/13/2026,	,	45m,	Research,	    111,	false
+5/20/2026,	,	45m,	Debate,	        111, 	false
+5/27/2026,	,	45m,	Resolution,	    111, 	false
+6/3/2026,	,	45m,	Topic Intro,	111, 	false
+6/10/2026,	,	45m,	Research,	    111, 	false
+6/24/2026,	,	45m,	Debate,	        111, 	false
