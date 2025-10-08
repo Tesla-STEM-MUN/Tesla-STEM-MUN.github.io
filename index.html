@@ -5,48 +5,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tesla STEM MUN</title>
   <style>
-    :root{ --bg:#121212; --panel:#1b1b1b; --text:#e8e8e8; --muted:#b9b9b9; --brand:#7ec8ff; --danger:#ff6b6b; --border:#2a2a2a; --maxw:1100px; --radius:16px; --gap:16px; }
-    *,*::before,*::after{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;line-height:1.35}
-    a{color:var(--brand);text-decoration:none} a:hover{text-decoration:underline}
-    header{border-bottom:1px solid var(--border);background:#0f0f0f;position:sticky;top:0;z-index:5}
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:14px 18px}
-    .topbar{display:flex;gap:12px;align-items:center;justify-content:space-between}
-    .brand{font-weight:700;font-size:1.05rem}
-    nav{display:flex;gap:10px;flex-wrap:wrap}
-    nav a{padding:8px 12px;border-radius:10px;background:var(--panel);border:1px solid var(--border)}
-    nav a[aria-current="page"]{outline:2px solid var(--brand)}
-    .hero{margin:24px auto 12px;max-width:var(--maxw);padding:18px;border:1px solid var(--border);background:linear-gradient(180deg,#191919,#131313);border-radius:var(--radius)}
-    .grid{max-width:var(--maxw);margin:0 auto;display:grid;gap:var(--gap);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
-    .muted{color:var(--muted)}
-    .banner{max-width:var(--maxw);margin:8px auto;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:#231919;color:#ffd6d6}
-    .error{max-width:var(--maxw);margin:16px auto;padding:12px 14px;border-radius:12px;border:1px solid #5b1f1f;background:#2a1414;color:#ffd6d6;white-space:pre-wrap}
-    .table{width:100%;border-collapse:collapse}
-    .table th,.table td{border-bottom:1px solid var(--border);padding:10px 8px;text-align:left}
-    .pill{display:inline-block;padding:2px 8px;border:1px solid var(--border);border-radius:999px;color:var(--muted);font-size:.8rem;margin-right:6px}
-    .ok{background:#143a14;color:#c2ffd0;border-color:#1f4f20}
+    :root{
+      --bg:#121212; --panel:#1b1b1b; --text:#e8e8e8; --muted:#b9b9b9;
+      --brand:#7ec8ff; --danger:#ff6b6b; --border:#2a2a2a;
+      --maxw:1100px; --radius:16px; --gap:16px;
+    }
+    *,*::before,*::after{ box-sizing:border-box }
+    html,body{ height:100% }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      line-height:1.35;
+    }
+    a{ color:var(--brand); text-decoration:none }
+    a:hover{ text-decoration:underline }
+
+    header{
+      border-bottom:1px solid var(--border);
+      background:#0f0f0f;
+      position:sticky; top:0; z-index:5;
+    }
+    .wrap{ max-width:var(--maxw); margin:0 auto; padding:14px 18px }
+    .topbar{ display:flex; gap:12px; align-items:center; justify-content:space-between }
+    .brand{ font-weight:700; font-size:1.05rem }
+
+    nav{ display:flex; gap:10px; flex-wrap:wrap }
+    nav a{
+      padding:8px 12px;
+      border-radius:10px;
+      background:var(--panel);
+      border:1px solid var(--border);
+      transition:box-shadow .2s ease;
+    }
+    /* inset ring so it never gets clipped */
+    nav a[aria-current="page"]{ box-shadow: inset 0 0 0 2px var(--brand); }
+
+    .hero{
+      margin:24px auto 12px;
+      max-width:var(--maxw);
+      padding:18px;
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,#191919,#131313);
+      border-radius:var(--radius);
+    }
+
+    .grid{
+      max-width:var(--maxw);
+      margin:0 auto;
+      display:grid;
+      gap:var(--gap);
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    }
+
+    .card{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:16px }
+    .muted{ color:var(--muted) }
+
+    .banner{
+      max-width:var(--maxw);
+      margin:8px auto;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:#231919; color:#ffd6d6;
+    }
+    .error{
+      max-width:var(--maxw);
+      margin:16px auto;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid #5b1f1f;
+      background:#2a1414; color:#ffd6d6;
+      white-space:pre-wrap;
+    }
+
+    .table{ width:100%; border-collapse:collapse }
+    .table th,.table td{ border-bottom:1px solid var(--border); padding:10px 8px; text-align:left }
+
+    .pill{
+      display:inline-block; padding:2px 8px;
+      border:1px solid var(--border); border-radius:999px;
+      color:var(--muted); font-size:.8rem; margin-right:6px;
+    }
+    .ok{ background:#143a14; color:#c2ffd0; border-color:#1f4f20 }
 
     /* ===== Topic detail 3-column layout ===== */
     .grid-topic{
-      display:grid;
-      gap:var(--gap);
+      display:grid; gap:var(--gap);
       grid-template-columns: 1.2fr 1fr 1.2fr;
       grid-template-areas: "about middle matrix";
       align-items:start;
+      max-width:var(--maxw); margin:0 auto;
     }
-    .col-about{ grid-area: about; }
-    .col-middle{ grid-area: middle; display:grid; gap:var(--gap); }
-    .col-matrix{ grid-area: matrix; }
+    .col-about{ grid-area:about }
+    .col-middle{ grid-area:middle; display:grid; gap:var(--gap) }
+    .col-matrix{ grid-area:matrix }
 
-    @media (max-width: 900px){
+    /* ===== Mobile gutters + phone tweaks ===== */
+    @media (max-width: 720px){
+      /* universal side gutter for routed content */
+      main{ padding-inline:12px; }
+      /* keep full-width blocks aligned with content */
+      .hero, .banner, .error{ margin-left:12px; margin-right:12px; }
+
+      .topbar{ gap:8px }
+      .brand{ font-size:1rem }
+
+      /* horizontal scrollable nav with inner padding so rings don't clip */
+      nav{
+        overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch;
+        gap:8px; padding:6px 10px;            /* inner gutter */
+        scroll-padding-inline:12px;           /* keeps first/last in view */
+      }
+      nav::-webkit-scrollbar{ display:none }  /* cleaner mobile look */
+      nav a{ margin:0 4px; padding:8px 10px }
+
+      /* stack layouts */
+      .grid{ grid-template-columns:1fr }
       .grid-topic{
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
         grid-template-areas:
           "about"
           "middle"
           "matrix";
       }
+
+      .card{ padding:14px; border-radius:14px }
+      .table th,.table td{ padding:8px 6px }
+    }
+
+    /* Small tablet gutters */
+    @media (min-width:721px) and (max-width:900px){
+      main{ padding-inline:16px; }
     }
   </style>
 </head>
@@ -62,11 +153,8 @@
 <main id="app" role="main"></main>
 
 <script>
-/* =========================
-   STRICT MODE — NO DEMO DATA
-   ========================= */
 
-// ----- Nav -----
+/* ----- Nav ----- */
 function setNav(){
   const nav = document.getElementById('nav');
   const hash = location.hash || '#/';
@@ -75,12 +163,14 @@ function setNav(){
     {href:'#/topics',label:'Topics'},
     {href:'#/board',label:'Board'}
   ];
-  nav.innerHTML = links.map(a => `<a href="${a.href}" ${hash===a.href?"aria-current='page'":""}>${a.label}</a>`).join('');
+  nav.innerHTML = links.map(a =>
+    `<a href="${a.href}" ${hash===a.href ? "aria-current='page'" : ""}>${a.label}</a>`
+  ).join('');
 }
 setNav();
 window.addEventListener('hashchange', ()=>{ setNav(); route(); });
 
-// ----- Helpers -----
+/* ----- Helpers ----- */
 function esc(s){ return (s||'').replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
 function usDateToISO(mmddyyyy){
   if(!mmddyyyy) return '';
@@ -113,23 +203,17 @@ function isCancelled(site, m){
   if(Array.isArray(site.cancel_dates) && site.cancel_dates.map(usDateToISO).includes(dISO)) return true;
   return false;
 }
-
-/* Render About with paragraphs/newlines.
-   - Accepts string (with \n) or array of paragraphs. */
+/* Render About with paragraphs/newlines. Accepts string or array. */
 function renderAboutHTML(about) {
-  if (Array.isArray(about)) {
-    return about.map(p => `<p>${esc(p)}</p>`).join('');
-  }
-  if (typeof about !== 'string' || !about.trim()) {
-    return '<p class="muted">Add "about" in topics.json</p>';
-  }
+  if (Array.isArray(about)) return about.map(p => `<p>${esc(p)}</p>`).join('');
+  if (typeof about !== 'string' || !about.trim()) return '<p class="muted">Add "about" in topics.json</p>';
   return about
-    .split(/\n{2,}/)                           // blank line => new paragraph
+    .split(/\n{2,}/)                          // blank line => new paragraph
     .map(p => `<p>${esc(p).replace(/\n/g, '<br>')}</p>`) // single \n => <br>
     .join('');
 }
 
-// ----- CSV Parser (quotes & CRLF) -----
+/* ----- CSV Parser (quotes & CRLF) ----- */
 function parseCSV(text){
   const out = [];
   let row = [], field = '';
@@ -171,7 +255,7 @@ function parseCSV(text){
   });
 }
 
-// ----- Loaders (STRICT: throw if missing/invalid) -----
+/* ----- Loaders (STRICT) ----- */
 async function loadJSON(path){
   const r = await fetch(path, {cache:'no-store'});
   if(!r.ok) throw new Error(`${path} → HTTP ${r.status}`);
@@ -212,7 +296,7 @@ async function loadMeetings(){
   }
 }
 
-// ----- Pages -----
+/* ----- Pages ----- */
 async function renderHome(){
   try{
     const [site, meetings, topics] = await Promise.all([
@@ -346,19 +430,21 @@ async function renderBoard(){
     const board = await loadJSON('data/board.json');
     document.getElementById('app').innerHTML = `<div class="wrap">
       <h2>Board</h2>
-      <table class="table"><thead><tr><th>Member</th><th>Role</th><th>Contact</th></tr></thead>
-      <tbody>${
-        board.map(b => `<tr>
-          <td>${esc(b.name || '')}</td>
-          <td>${esc(b.role || '')}</td>
-          <td>${b.email ? `<a href="mailto:${b.email}">${esc(b.email)}</a>` : '—'}</td>
-        </tr>`).join('')}
-      </tbody></table>
+      <table class="table">
+        <thead><tr><th>Member</th><th>Role</th><th>Contact</th></tr></thead>
+        <tbody>${
+          board.map(b => `<tr>
+            <td>${esc(b.name || '')}</td>
+            <td>${esc(b.role || '')}</td>
+            <td>${b.email ? `<a href="mailto:${b.email}">${esc(b.email)}</a>` : '—'}</td>
+          </tr>`).join('')
+        }</tbody>
+      </table>
     </div>`;
   }catch(e){ showError(e); }
 }
 
-// ----- Router -----
+/* ----- Router ----- */
 function route(){
   const hash = location.hash || '#/';
   const topic = hash.match(/^#\/topic\/([^\s?#]+)/);
@@ -368,6 +454,66 @@ function route(){
   return renderHome();
 }
 route();
+
+function burst(){
+  const canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:9999';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  const DPR = devicePixelRatio || 1;
+  let w = innerWidth * DPR, h = innerHeight * DPR;
+  canvas.width = w; canvas.height = h;
+
+  const colors = ['#7ec8ff','#ff6b6b','#ffd166','#06d6a0','#c77dff','#ff9e00'];
+  const parts = Array.from({length:180}, () => ({
+    x: Math.random()*w,
+    y: -20,
+    r: 4+Math.random()*6,
+    vx: -2+Math.random()*4,
+    vy: 2+Math.random()*3,
+    a: 1,
+    color: colors[Math.floor(Math.random()*colors.length)]
+  }));
+
+  let t = 0, id;
+  (function tick(){
+    id = requestAnimationFrame(tick);
+    t++;
+    ctx.clearRect(0,0,w,h);
+    parts.forEach(p=>{
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.03;      // slower gravity
+      p.a -= 0.004;      // slower fade
+      ctx.globalAlpha = Math.max(p.a,0);
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fill();
+    });
+    if(t>600){           // ~10 s instead of 4 s
+      cancelAnimationFrame(id);
+      canvas.remove();
+    }
+  })();
+}
+(function(){
+  const seq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let i = 0;
+
+  window.addEventListener('keydown', (e) => {
+    const k = (e.key && e.key.length === 1) ? e.key.toLowerCase() : e.key; // normalize 'b'/'a'
+    const want = seq[i];
+    if (k === want) {
+      i++;
+      if (i === seq.length) { i = 0; burst(); }
+    } else {
+      // allow immediate restart if they pressed the first key
+      i = (k === seq[0]) ? 1 : 0;
+    }
+  }, { passive: true });
+})();
+
 </script>
 </body>
 </html>
