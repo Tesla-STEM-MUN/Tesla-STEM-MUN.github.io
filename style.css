@@ -3,11 +3,12 @@
   --brand:#7ec8ff; --danger:#ff6b6b; --border:#2a2a2a;
   --maxw:1100px; --radius:16px; --gap:16px;
 
-  /* Stronger blue contrast for pills */
-  --link-pill:#1f6feb;          /* base blue */
-  --link-pill-hover:#2a7fff;    /* brighter on hover */
+  /* UN blue (good contrast) */
+  --link-pill:#1f6feb;
+  --link-pill-hover:#2a7fff;
   --link-pill-ring:rgba(0,0,0,.35);
 }
+
 *,*::before,*::after{ box-sizing:border-box }
 html,body{ height:100% }
 body{
@@ -19,6 +20,9 @@ body{
 }
 a{ color:var(--brand); text-decoration:none }
 a:hover{ text-decoration:underline }
+
+/* media-safe embeds */
+img,iframe,video{ max-width:100%; height:auto; }
 
 /* ----- Header / Nav ----- */
 header{
@@ -93,17 +97,27 @@ nav a[aria-current="page"]{ box-shadow: inset 0 0 0 2px var(--brand); }
   text-align:left;
 }
 
-/* ----- Pills ----- */
+/* ================== Pills (wrap cleanly on mobile) ================== */
+/* Use .pills wrapper when you output a list of pills (optional but nice) */
+.pills{ display:flex; flex-wrap:wrap; align-items:flex-start; gap:6px; }
+
 .pill{
-  display:inline-block;
-  padding:3px 10px;
+  display:inline-flex;              /* keep capsule feel but allow wrapping */
+  align-items:flex-start;           /* top-align for multi-line */
+  padding:6px 10px;
   border:1px solid var(--border);
-  border-radius:999px;
+  border-radius:12px;               /* << smaller radius to avoid “weird circles” */
   font-size:.82rem;
   line-height:1.25;
   margin:0 6px 6px 0;
-  white-space:nowrap;
   text-decoration:none;
+
+  max-width:100%;
+  white-space:normal;               /* allow wrap inside the pill */
+  overflow-wrap:anywhere;           /* wrap long URLs/tokens */
+  word-break:break-word;
+  min-width:0;
+  vertical-align:top;
 }
 
 /* Green: Meeting type/status */
@@ -113,7 +127,7 @@ nav a[aria-current="page"]{ box-shadow: inset 0 0 0 2px var(--brand); }
   border-color:#1f4f20;
 }
 
-/* UN-Blue: Links (resources, research, debate link notes) */
+/* UN-Blue: Link pills */
 .pill.link{
   background:var(--link-pill);
   color:#fff;
@@ -147,6 +161,7 @@ nav a[aria-current="page"]{ box-shadow: inset 0 0 0 2px var(--brand); }
 
 /* ----- Responsive tweaks ----- */
 @media (max-width:720px){
+  html,body{ max-width:100%; overflow-x:hidden; } /* safety */
   main{ padding-inline:12px; }
   .hero, .banner, .error{ margin-left:12px; margin-right:12px; }
   .topbar{ gap:8px }
@@ -158,6 +173,7 @@ nav a[aria-current="page"]{ box-shadow: inset 0 0 0 2px var(--brand); }
   }
   nav::-webkit-scrollbar{ display:none }
   nav a{ margin:0 4px; padding:8px 10px }
+
   .grid{ grid-template-columns:1fr }
   .grid-topic{
     grid-template-columns:1fr;
@@ -166,10 +182,23 @@ nav a[aria-current="page"]{ box-shadow: inset 0 0 0 2px var(--brand); }
       "middle"
       "matrix";
   }
+
   .card{ padding:14px; border-radius:14px }
   .table th,.table td{ padding:8px 6px }
+
+  /* scale pills slightly on phones */
+  .pill{ font-size:.8rem; padding:6px 9px; }
+  /* wrap long inline links in text too */
+  .card a{ overflow-wrap:anywhere; word-break:break-word; }
 }
 
 @media (min-width:721px) and (max-width:900px){
   main{ padding-inline:16px; }
+}
+
+@media (max-width:720px){
+  /* existing stuff already here … just add this: */
+  .grid[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
 }
