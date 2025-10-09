@@ -1,0 +1,175 @@
+:root{
+  --bg:#121212; --panel:#1b1b1b; --text:#e8e8e8; --muted:#b9b9b9;
+  --brand:#7ec8ff; --danger:#ff6b6b; --border:#2a2a2a;
+  --maxw:1100px; --radius:16px; --gap:16px;
+
+  /* Stronger blue contrast for pills */
+  --link-pill:#1f6feb;          /* base blue */
+  --link-pill-hover:#2a7fff;    /* brighter on hover */
+  --link-pill-ring:rgba(0,0,0,.35);
+}
+*,*::before,*::after{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+  line-height:1.35;
+}
+a{ color:var(--brand); text-decoration:none }
+a:hover{ text-decoration:underline }
+
+/* ----- Header / Nav ----- */
+header{
+  border-bottom:1px solid var(--border);
+  background:#0f0f0f;
+  position:sticky; top:0; z-index:5;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:14px 18px }
+.topbar{ display:flex; gap:12px; align-items:center; justify-content:space-between }
+.brand{ font-weight:700; font-size:1.05rem }
+
+nav{ display:flex; gap:10px; flex-wrap:wrap }
+nav a{
+  padding:8px 12px;
+  border-radius:10px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  transition:box-shadow .2s ease;
+}
+nav a[aria-current="page"]{ box-shadow: inset 0 0 0 2px var(--brand); }
+
+/* ----- Hero (Next Meeting) ----- */
+.hero{
+  margin:24px auto 12px;
+  max-width:var(--maxw);
+  padding:18px;
+  border:1px solid var(--border);
+  background:linear-gradient(180deg,#191919,#131313);
+  border-radius:var(--radius);
+}
+
+/* ----- Cards / Layout ----- */
+.grid{
+  max-width:var(--maxw);
+  margin:0 auto;
+  display:grid;
+  gap:var(--gap);
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:16px;
+}
+.muted{ color:var(--muted) }
+
+/* ----- Banners / Errors ----- */
+.banner{
+  max-width:var(--maxw);
+  margin:8px auto;
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#231919; color:#ffd6d6;
+}
+.error{
+  max-width:var(--maxw);
+  margin:16px auto;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid #5b1f1f;
+  background:#2a1414; color:#ffd6d6;
+  white-space:pre-wrap;
+}
+
+/* ----- Tables ----- */
+.table{ width:100%; border-collapse:collapse }
+.table th,.table td{
+  border-bottom:1px solid var(--border);
+  padding:10px 8px;
+  text-align:left;
+}
+
+/* ----- Pills ----- */
+.pill{
+  display:inline-block;
+  padding:3px 10px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  font-size:.82rem;
+  line-height:1.25;
+  margin:0 6px 6px 0;
+  white-space:nowrap;
+  text-decoration:none;
+}
+
+/* Green: Meeting type/status */
+.ok{
+  background:#143a14;
+  color:#c2ffd0;
+  border-color:#1f4f20;
+}
+
+/* UN-Blue: Links (resources, research, debate link notes) */
+.pill.link{
+  background:var(--link-pill);
+  color:#fff;
+  border-color:var(--link-pill-ring);
+  box-shadow:inset 0 0 0 1px var(--link-pill-ring);
+  font-weight:600;
+}
+.pill.link:hover{
+  background:var(--link-pill-hover);
+  text-decoration:none;
+}
+
+/* Gray text pills (non-clickable notes) */
+.pill:not(.ok):not(.link){
+  background:#191919;
+  color:#d6d6d6;
+  border-color:#2d2d2d;
+}
+
+/* ----- Topic detail layout ----- */
+.grid-topic{
+  display:grid; gap:var(--gap);
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  grid-template-areas: "about middle matrix";
+  align-items:start;
+  max-width:var(--maxw); margin:0 auto;
+}
+.col-about{ grid-area:about }
+.col-middle{ grid-area:middle; display:grid; gap:var(--gap) }
+.col-matrix{ grid-area:matrix }
+
+/* ----- Responsive tweaks ----- */
+@media (max-width:720px){
+  main{ padding-inline:12px; }
+  .hero, .banner, .error{ margin-left:12px; margin-right:12px; }
+  .topbar{ gap:8px }
+  .brand{ font-size:1rem }
+  nav{
+    overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch;
+    gap:8px; padding:6px 10px;
+    scroll-padding-inline:12px;
+  }
+  nav::-webkit-scrollbar{ display:none }
+  nav a{ margin:0 4px; padding:8px 10px }
+  .grid{ grid-template-columns:1fr }
+  .grid-topic{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "about"
+      "middle"
+      "matrix";
+  }
+  .card{ padding:14px; border-radius:14px }
+  .table th,.table td{ padding:8px 6px }
+}
+
+@media (min-width:721px) and (max-width:900px){
+  main{ padding-inline:16px; }
+}
