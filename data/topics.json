@@ -1,27 +1,15 @@
 [
   {
-    "topic": "UNCTAD: Investing in Africa's Technological Future",
-    
     "slug": "africa-development",
-    
-    "description": "This is our intro committee. We will be going through it at a slower pace than usual, teaching important aspects of MUN along the way.",
-    
-    "resources": [
-      { "label": "Intro PowerPoint", "url": "https://lwsd-my.sharepoint.com/:p:/g/personal/1095185_lwsd_org/ET703P3DasVHo2o24Mp57doBBh9xBm0PMsVYEnCWrWHMxw?e=0fghLQ" }
+    "title": "UNCTAD: Investing in Africa’s Technological Future",
+    "links": [
+      {"label":"Intro PowerPoint","url":"https://lwsd-my.sharepoint.com/:p:/g/personal/1095185_lwsd_org/ET703P3DasVHo2o24Mp57doBBh9xBm0PMsVYEnCWrWHMxw?e=0fghLQ"}
     ],
-    
     "research_links": [
-      { "label": "UNESCO - What you need to know about the challenges of STEM in Africa", "url": "https://www.unesco.org/en/articles/what-you-need-know-about-challenges-stem-africa" },
-      { "label": "UN - International Day of Science, Technology and Innovation for the South", "url": "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day" }
+      {"label":"UNESCO - What you need to know abou the challenges of STEM in Africa","url":"https://www.unesco.org/en/articles/what-you-need-know-about-challenges-stem-africa"},
+      {"label":"UN - International Day of Science, Technology and Innovation for the South", "url":"https://www.un.org/en/observances/science-technology-and-innovation-for-south-day"}
     ],
-    
-    "debate_notes": [
-      { "label": "Delegate Notes", "url": "https://lwsd414.instructure.com/courses/18835/discussion_topics/28127" }
-    ],
-    
-    "resolution_links": [
-    ],
-
-    "matrix_csv": "data/matrices/africa-development.csv"
+    "matrix_csv": "data/matrices/africa-development.csv",
+    "about": "This is our intro comittee. We will be going through it at a slower pace than usual, teaching important aspects of MUN along the way."
   }
 ]
