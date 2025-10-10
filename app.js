@@ -280,86 +280,90 @@ async function renderTopicDetail(slug){
     const t = list.find(x => (x.slug || slugify(x.topic)) === slug);
     if(!t){ document.getElementById('app').innerHTML = '<div class="wrap">Topic not found.</div>'; return; }
 
-    // Optional embedded Country Matrix CSV
-    let matrixHTML = '';
+    // ----- Optional Country Matrix CSV -----
+    let matrixCard = '';
     const path = t.matrix_csv || `data/matrices/${slug}.csv`;
     try{
       const rows = await loadCSV(path);
       if(rows.length){
         const headers = Object.keys(rows[0]);
-        matrixHTML = `<div class="card"><h3>Country Matrix</h3>
+        matrixCard = `<article class="card">
+          <h3>Country Matrix</h3>
           <div style="overflow:auto">
             <table class="table">
               <thead><tr>${headers.map(h => `<th>${esc(h)}</th>`).join('')}</tr></thead>
               <tbody>${rows.map(r => `<tr>${headers.map(h => `<td>${esc(r[h] || '')}</td>`).join('')}</tr>`).join('')}</tbody>
             </table>
           </div>
-        </div>`;
+        </article>`;
       }
-    }catch{ /* optional */ }
+    }catch{/* optional */}
 
-    // Resources
-    const resourcesHTML = `<article class="card">
+    // ----- Resources -----
+    const resourcesCard = `<article class="card">
       <h3>Resources</h3>
       <div class="pills">${(t.resources || []).map(e => previewPill(e.name||e.label||e.url, e.url)).join('') || '<span class="pill">None</span>'}</div>
     </article>`;
 
-    // Research Links
+    // ----- Research Links -----
     const researchItems = Array.isArray(t.research_links) ? t.research_links : [];
-    const researchHTML = researchItems.length
-      ? `<article class="card">
-           <h3>Research Links</h3>
-           <div class="pills">${
-              researchItems.map(item => {
-                if (typeof item === 'string') {
-                  return previewPill(normalizeLabelFromURL(item), item);
-                }
-                return previewPill(item.name||item.label||normalizeLabelFromURL(item.url), item.url);
-              }).join('')
-            }</div>
-         </article>`
-      : '';
+    const researchCard = researchItems.length ? `<article class="card">
+      <h3>Research Links</h3>
+      <div class="pills">${
+        researchItems.map(item => {
+          if (typeof item === 'string') return previewPill(normalizeLabelFromURL(item), item);
+          return previewPill(item.name||item.label||normalizeLabelFromURL(item.url), item.url);
+        }).join('')
+      }</div>
+    </article>` : '';
 
-    // Debate Notes
+    // ----- Debate Notes -----
     const debate = Array.isArray(t.debate_notes) ? t.debate_notes : [];
-    const debateHTML = debate.length
-      ? `<article class="card">
-           <h3>Debate Notes</h3>
-           <div class="pills">${
-             debate.map(n => {
-               if (typeof n === 'string') return `<span class="pill">${esc(n)}</span>`;
-               if (n && n.url) return previewPill(n.label || normalizeLabelFromURL(n.url), n.url);
-               return '';
-             }).join('')
-           }</div>
-         </article>`
-      : '';
+    const debateCard = debate.length ? `<article class="card">
+      <h3>Debate Notes</h3>
+      <div class="pills">${
+        debate.map(n => {
+          if (typeof n === 'string') return `<span class="pill">${esc(n)}</span>`;
+          if (n && n.url) return previewPill(n.label || normalizeLabelFromURL(n.url), n.url);
+          return '';
+        }).join('')
+      }</div>
+    </article>` : '';
 
-    // Resolutions (optional)
+    // ----- Resolutions (optional) -----
     const res = Array.isArray(t.resolution_links) ? t.resolution_links : [];
-    const resHTML = res.length
-      ? `<article class="card">
-           <h3>Resolutions</h3>
-           <div class="pills">${res.map(r => previewPill(r.name||r.label||r.url, r.url)).join('')}</div>
-         </article>`
-      : '';
+    const resolutionsCard = res.length ? `<article class="card">
+      <h3>Resolutions</h3>
+      <div class="pills">${res.map(r => previewPill(r.name||r.label||r.url, r.url)).join('')}</div>
+    </article>` : '';
 
+    // ----- Speaking Stats (optional) -----
+    const stats = Array.isArray(t.speaking_stats) ? t.speaking_stats : [];
+    const statsCard = stats.length ? `<article class="card">
+      <h3>Speaking Stats</h3>
+      <table class="table">
+        <thead><tr><th>Country</th><th># Times Spoken</th></tr></thead>
+        <tbody>${stats.map(s => `<tr><td>${esc(s.country)}</td><td>${esc(String(s.times_spoken))}</td></tr>`).join('')}</tbody>
+      </table>
+    </article>` : '';
+
+    // ----- About -----
+    const aboutCard = `<article class="card">
+      <h3>About</h3>
+      ${renderAboutHTML(t.description || t.about)}
+    </article>`;
+
+    // Build a single masonry container so cards can mix big/small and fill space
     document.getElementById('app').innerHTML = `<div class="wrap">
       <h2>${esc(t.topic || 'Untitled Topic')}</h2>
-      <div class="grid-topic">
-        <article class="card col-about">
-          <h3>About</h3>
-          ${renderAboutHTML(t.description || t.about)}
-        </article>
-
-        <div class="col-middle">
-          ${resourcesHTML}
-          ${researchHTML}
-          ${debateHTML}
-          ${resHTML}
-        </div>
-
-        ${matrixHTML ? `<div class="col-matrix">${matrixHTML}</div>` : ''}
+      <div class="masonry">
+        ${aboutCard}
+        ${resourcesCard}
+        ${researchCard}
+        ${debateCard}
+        ${resolutionsCard}
+        ${statsCard}
+        ${matrixCard}
       </div>
     </div>`;
   }catch(e){ showError(e); }

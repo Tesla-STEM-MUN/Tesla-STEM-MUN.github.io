@@ -1,15 +1,41 @@
 [
   {
+    "topic": "UNCTAD: Investing in Africa's Technological Future",
+    
     "slug": "africa-development",
-    "title": "UNCTAD: Investing in Africa’s Technological Future",
-    "links": [
-      {"label":"Intro PowerPoint","url":"https://lwsd-my.sharepoint.com/:p:/g/personal/1095185_lwsd_org/ET703P3DasVHo2o24Mp57doBBh9xBm0PMsVYEnCWrWHMxw?e=0fghLQ"}
+    
+    "description": "This is our intro committee. We will be going through it at a slower pace than usual, teaching important aspects of MUN along the way.",
+    
+    "resources": [
+      { "label": "Intro PowerPoint", "url": "https://lwsd-my.sharepoint.com/:p:/g/personal/1095185_lwsd_org/ET703P3DasVHo2o24Mp57doBBh9xBm0PMsVYEnCWrWHMxw?e=0fghLQ" }
     ],
+    
     "research_links": [
-      {"label":"UNESCO - What you need to know abou the challenges of STEM in Africa","url":"https://www.unesco.org/en/articles/what-you-need-know-about-challenges-stem-africa"},
-      {"label":"UN - International Day of Science, Technology and Innovation for the South", "url":"https://www.un.org/en/observances/science-technology-and-innovation-for-south-day"}
+      { "label": "UNESCO - What you need to know about the challenges of STEM in Africa", "url": "https://www.unesco.org/en/articles/what-you-need-know-about-challenges-stem-africa" },
+      { "label": "UN - International Day of Science, Technology and Innovation for the South", "url": "https://www.un.org/en/observances/science-technology-and-innovation-for-south-day" }
     ],
-    "matrix_csv": "data/matrices/africa-development.csv",
-    "about": "This is our intro comittee. We will be going through it at a slower pace than usual, teaching important aspects of MUN along the way."
+    
+    "debate_notes": [
+      { "label": "Delegate Notes", "url": "https://lwsd414.instructure.com/courses/18835/discussion_topics/28127" }
+    ],
+
+    "speaking_stats": [
+      { "country": "Ethiopia", "times_spoken": 2 },
+      { "country": "Rwanda", "times_spoken": 2 },
+      { "country": "Nigeria", "times_spoken": 2 },
+      { "country": "Morocco", "times_spoken": 2 },
+      { "country": "Australia", "times_spoken": 1 },
+      { "country": "Egypt", "times_spoken": 1 },
+      { "country": "Somalia", "times_spoken": 1 },
+      { "country": "United States", "times_spoken": 1 },
+      { "country": "France", "times_spoken": 0 },
+      { "country": "Kenya", "times_spoken": 0 },
+      { "country": "Germany", "times_spoken": 0 }
+    ],
+
+    "resolution_links": [
+    ],
+
+    "matrix_csv": "data/matrices/africa-development.csv"
   }
 ]
