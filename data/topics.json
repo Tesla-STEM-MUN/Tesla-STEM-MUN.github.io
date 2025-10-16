@@ -21,17 +21,17 @@
     ],
 
     "speaking_stats": [
-      { "country": "Ethiopia", "times_spoken": 2 },
+      { "country": "Ethiopia", "times_spoken": 4 },
+      { "country": "Australia", "times_spoken": 3 },
+      { "country": "Somalia", "times_spoken": 3 },
+      { "country": "Morocco", "times_spoken": 3 },
+      { "country": "Egypt", "times_spoken": 2 },
       { "country": "Rwanda", "times_spoken": 2 },
       { "country": "Nigeria", "times_spoken": 2 },
-      { "country": "Morocco", "times_spoken": 2 },
-      { "country": "Australia", "times_spoken": 1 },
-      { "country": "Egypt", "times_spoken": 1 },
-      { "country": "Somalia", "times_spoken": 1 },
-      { "country": "United States", "times_spoken": 1 },
-      { "country": "France", "times_spoken": 0 },
-      { "country": "Kenya", "times_spoken": 0 },
-      { "country": "Germany", "times_spoken": 0 }
+      { "country": "Germany", "times_spoken": 2 },
+      { "country": "United States", "times_spoken": 2 },
+      { "country": "Kenya", "times_spoken": 1 },
+      { "country": "France", "times_spoken": 0 }
     ],
 
     "resolution_links": [
