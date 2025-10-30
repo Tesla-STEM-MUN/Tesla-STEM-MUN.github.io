@@ -1,5 +1,30 @@
 [
   {
+    "topic": "UNEP: Mitigating the Threat of Invasive Species Around the Globe",
+    
+    "slug": "invasive-species",
+    
+    "description": "UNEP aims to coordinate global action and policy to prevent, manage, and reduce the environmental and economic damage caused by invasive species through international collaboration and sustainable solutions.",
+    
+    "resources": [
+      { "label": "Intro PowerPoint", "url": "https://lwsd-my.sharepoint.com/:p:/g/personal/1083416_lwsd_org/EVkxYbPaLSZIpkgof8gQ71EB9L6DyTEHJYS6YRXxRq1V2g?e=6appv5" }
+    ],
+    
+    "research_links": [
+    ],
+    
+    "debate_notes": [
+    ],
+
+    "speaking_stats": [
+    ],
+
+    "resolution_links": [
+    ],
+
+    "matrix_csv": "data/matrices/invasive-species.csv"
+  },
+  {
     "topic": "UNCTAD: Investing in Africa's Technological Future",
     
     "slug": "africa-development",
@@ -18,6 +43,10 @@
     "debate_notes": [
       { "label": "Dias Notes", "url": "https://lwsd414.instructure.com/courses/18835/discussion_topics/28360" },
       { "label": "Delegate Notes", "url": "https://lwsd414.instructure.com/courses/18835/discussion_topics/28127" }
+    ],
+
+    "resolution_links": [
+
     ],
 
     "speaking_stats": [
